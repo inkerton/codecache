@@ -63,7 +63,7 @@ export default function AddSnippet() {
 
     // Check if required fields are empty
     if (!title) {
-      toast.error("Title cannot be empty");
+      toast.error("Title can't be empty");
       return;
     }
     if (!language) {
