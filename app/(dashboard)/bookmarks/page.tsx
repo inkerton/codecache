@@ -329,7 +329,7 @@ export default function Bookmarks() {
                 className="overflow-hidden hover:shadow-lg transition-shadow flex flex-col justify-between duration-300 min-h-[350px]"
               >
                 <CardHeader className=" border-b border-primary-100">
-                  <CardTitle className="flex justify-between">
+                  <CardTitle className="flex flex-col sm:flex-row justify-between">
                     {snippet.title}
                     <div className="flex gap-10 flex-row-reverse items-center text-xs font-normal">
                       <div className=" flex gap-2">
@@ -351,7 +351,7 @@ export default function Bookmarks() {
                             );
                           })}
                         </div>
-                        <div className=" text-blue-500">
+                        <div className=" text-blue-500 flex-col sm:flex-row">
                           {ratings[snippet._id]?.totalRatings || 0} ratings
                         </div>
                       </div>

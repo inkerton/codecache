@@ -61,7 +61,6 @@ export default function AddSnippet() {
     // Prepare tags as an array
     const tagsArray = tags.split(",").map((tag) => tag.trim());
 
-    // Check if required fields are empty
     if (!title) {
       toast.error("Title can't be empty");
       return;
@@ -105,12 +104,10 @@ export default function AddSnippet() {
         }),
       });
       if (response.ok) {
-        toast.success("Snippet requested for review");
-        setTimeout(() => {
-          router.push("/");
-        }, 2000);
+        setMessage("Snippet added successfully!");
+        router.push("/");
       } else {
-        toast.error("Failed to add snippet. Please try again.");
+        setMessage("Failed to add snippet. Please try again.");
       }
     } catch (error) {
       setMessage("An error occurred. Please try again.");
@@ -118,7 +115,7 @@ export default function AddSnippet() {
   };
 
   return (
-    <div className="w-full p-8">
+    <div className="p-8">
       <h1 className="text-4xl font-bold mb-6">Add New Snippet</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -205,7 +202,8 @@ export default function AddSnippet() {
             className="mt-1"
           />
         </div>
-        <div className="flex gap-4 flex-wrap">
+
+        <div className="flex flex-col sm:flex-row gap-6">
           <div>
             <label
               htmlFor="category"
@@ -232,6 +230,7 @@ export default function AddSnippet() {
               </SelectContent>
             </Select>
           </div>
+
           <div>
             <label
               htmlFor="difficulty"
@@ -252,6 +251,7 @@ export default function AddSnippet() {
               </SelectContent>
             </Select>
           </div>
+
           <div>
             <label
               htmlFor="usage"
@@ -259,7 +259,6 @@ export default function AddSnippet() {
             >
               Usage
             </label>
-
             <Select onValueChange={setUsage}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select usage type" />
@@ -276,14 +275,12 @@ export default function AddSnippet() {
           </div>
         </div>
 
-        <div className=" flex justify-end">
-          <Button
-            type="submit"
-            className="mt-4 hover:border hover:border-foreground hover:text-foreground hover:bg-transparent activer:border active:border-blue-500"
-          >
+        <div className="flex justify-center sm:justify-end">
+          <Button type="submit" className="mt-4">
             Add Snippet
           </Button>
         </div>
+
         {message && <p className="mt-4 text-green-600">{message}</p>}
       </form>
     </div>
